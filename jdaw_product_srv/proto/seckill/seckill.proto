@@ -1,0 +1,84 @@
+syntax="proto3";
+package jdaw.product.srv;
+
+option go_package ="./proto;jdaw_product_srv";
+
+service Seckills{
+  rpc GetSeckillList(SeckillListRequest) returns(SeckillListResponse){}
+  rpc GetProducts (ProductRequest) returns (ProductResponse) {}
+  rpc SeckillDelete(SeckillDeleteRequest) returns(SeckillDeleteResponse){}
+  rpc SecKillAdd (SeckillDetail) returns (SeckillDeleteResponse){}
+  rpc SecKillToEdit (SeckillDeleteRequest) returns (SecKillToEditResponse){}
+  rpc SecKillDoEdit (SeckillDetail) returns (SeckillDeleteResponse){}
+
+  rpc FrontSecKillList (SeckillListRequest) returns (SeckillListResponse){}
+  rpc FrontSecKillDetail (SeckillDeleteRequest) returns (FrontSecKillDetailResponse){}
+}
+
+message FrontSecKillDetailResponse {
+  int32 code = 1;
+  string msg = 2;
+  SeckillDetail seckillde = 3;
+}
+
+message SecKillToEditResponse {
+  int32 code =1;
+  string msg = 2;
+  SeckillDetail seckillde =3;
+  repeated Product products_no =4;
+
+}
+
+message SeckillDeleteRequest{
+  int32 id=1;
+}
+
+message SeckillDeleteResponse{
+  int32 code=1;
+  string msg=2;
+}
+
+message ProductRequest {
+
+}
+
+message ProductResponse {
+  int32 code = 1;
+  string msg = 2;
+  repeated Product products =3;
+}
+
+message Product {
+  int32 id = 1;
+  string pname = 2;
+}
+
+message SeckillListRequest{
+  int32 currentPage=1;
+  int32 pageSize=2;
+}
+
+message SeckillListResponse{
+  int32 code=1;
+  string msg=2;
+  repeated SeckillDetail seckillls=3;
+  int32 total=4;
+  int32 current=5;
+  int32 page_size=6;
+}
+
+message SeckillDetail{
+  int32 id = 1;
+  string name = 2;
+  float price = 3;
+  int32 num = 4;
+  int32 pid = 5;
+  string pname = 6;
+  string start_time = 7;
+  string end_time = 8;
+  string create_time = 9;
+  string pic = 10;
+  float p_price = 11;
+  string pdesc = 12;
+  string unit = 13;
+}

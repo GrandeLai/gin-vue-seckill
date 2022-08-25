@@ -1,0 +1,8 @@
+{
+  "host":"localhost",
+  "port":"3306",
+  "user_name":"root",
+  "password":"123456",
+  "database":"gin_vue_seckill",
+  "logo_mode":true
+}

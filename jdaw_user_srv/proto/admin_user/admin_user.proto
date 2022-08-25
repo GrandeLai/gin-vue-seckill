@@ -1,0 +1,41 @@
+syntax="proto3";
+package jdaw.user.srv;
+
+option go_package ="./proto;jdaw_user_srv";
+
+service AdminUser {
+  rpc AdminUserLogin(AdminUserRequest) returns (AdminUserResponse){}
+  rpc GetFrontUserList(FrontUserListRequest) returns(FrontUserListResponse){}
+}
+
+message AdminUserRequest{
+  string username=1;
+  string password=2;
+}
+
+message AdminUserResponse{
+  int32 code=1;
+  string msg=2;
+  string user_name=3;
+}
+
+message FrontUserListRequest{
+  int32 currentPage=1;
+  int32 pageSize=2;
+}
+
+message FrontUserListResponse{
+  int32 code=1;
+  string msg=2;
+  repeated FrontUserDetail frontuserlist=3;
+  int32 total=4;
+  int32 current=5;
+  int32 page_size=6;
+}
+
+message FrontUserDetail{
+  string email=1;
+  string desc=2;
+  string status=3;
+  string create_time=4;
+}
